@@ -20,6 +20,11 @@ const booksBorrowedCount = (books) => {
   return borrowed;
 }
 
+//Helper function for following functions
+const splicer = (obj) => {
+  return obj.splice(0, 5);
+}
+
 const getMostCommonGenres = (books) => {
   let genres = books.map((book) => book.genre)
     let genresList = Array.from(new Set(genres));
@@ -33,7 +38,7 @@ const getMostCommonGenres = (books) => {
     return acc;
   }, []);
   let sorted = object.sort((first, second) => (second.count - first.count));
-  return sorted.splice(0, 5);
+  return splicer(sorted);
   
 }
 
@@ -46,7 +51,7 @@ const getMostPopularBooks = (books) => {
     popBooks.push(bookObj)
   }
   const list = popBooks.sort((bookA, bookB) => bookA.count < bookB.count ? 1 : -1);
-  return list.slice(0,5)
+  return splicer(list)
 }
 
 const getMostPopularAuthors = (books, authors) => {
@@ -66,7 +71,7 @@ const getMostPopularAuthors = (books, authors) => {
     arr.push(author)
   }
   const final = arr.sort((auth1, auth2)=> auth1.count < auth2.count ? 1:-1)
-  return final.slice(0,5)
+  return splicer(final)
 }
 
 
